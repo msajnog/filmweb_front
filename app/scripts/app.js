@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -29,7 +29,22 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      // .when('/categories', {
+      //   templateUrl: 'views/category.html',
+      //   controller: 'CategoryCtrl',
+      //   controllerAs: 'category'
+      // })
+      .when('/category/:category', {
+        templateUrl: 'views/category.html',
+        controller: 'CategoryCtrl',
+        controllerAs: 'category'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }])
+  .controller('LocationCtrl', ['$scope', '$location', function ($scope, $location) {
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
+  }]);
