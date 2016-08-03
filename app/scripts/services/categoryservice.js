@@ -18,3 +18,12 @@ angular.module('filmwebFrontApp')
       }
     });
   }]);
+
+  angular.module('filmwebFrontApp')
+    .factory('categoryService', ['$resource', function ($resource) {
+      return  $resource('http://localhost:8080/api/category/:category_id', {}, {
+        'get': {
+          method: 'GET'
+        }
+      });
+    }]);
