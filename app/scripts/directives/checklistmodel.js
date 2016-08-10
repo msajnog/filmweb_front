@@ -1,3 +1,4 @@
+'use strict';
 /**
  * Checklist-model
  * AngularJS directive for list of checkboxes
@@ -63,7 +64,7 @@ angular.module('checklist-model', [])
     var comparator = angular.equals;
 
     if (attrs.hasOwnProperty('checklistComparator')){
-      if (attrs.checklistComparator[0] == '.') {
+      if (attrs.checklistComparator[0] === '.') {
         var comparatorExpression = attrs.checklistComparator.substring(1);
         comparator = function (a, b) {
           return a[comparatorExpression] === b[comparatorExpression];
@@ -104,8 +105,8 @@ angular.module('checklist-model', [])
 
     }
 
-    // declare one function to be used for both $watch functions
-    function setChecked(newArr, oldArr) {
+    // declare one function to be used for both $watch functions | 'oldArr' - second param
+    function setChecked(newArr) {
       if (checklistBeforeChange && (checklistBeforeChange(scope) === false)) {
         setValueInChecklistModel(value, scope[attrs.ngModel]);
         return;
