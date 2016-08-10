@@ -1,6 +1,6 @@
 <h1>{{category.name}}</h1>
 
-<div ng-repeat="movie in categoryMovies" class="panel panel-primary">
+<div ng-repeat="movie in categoryMovies | orderBy: 'title'" class="panel panel-primary">
   <div class="panel-heading"><b>{{movie.title}}</b></div>
   <div class="panel-body">{{movie.description}}</div>
   <div class="panel-footer"><i>Director: {{movie.director}}</i></div>

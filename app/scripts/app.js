@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'checklist-model'
   ])
   .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
@@ -39,12 +40,12 @@ angular
         controller: 'CategoryCtrl',
         controllerAs: 'category'
       })
+      .when('/add-movie', {
+        templateUrl: 'views/addMovie.html',
+        controller: 'MovieCtrl',
+        controllerAs: 'movie'
+      })
       .otherwise({
         redirectTo: '/'
       });
-  }])
-  .controller('LocationCtrl', ['$scope', '$location', function ($scope, $location) {
-    $scope.isActive = function(route) {
-      return route === $location.path();
-    };
   }]);

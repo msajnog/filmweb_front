@@ -21,7 +21,7 @@ angular.module('filmwebFrontApp')
 
   angular.module('filmwebFrontApp')
     .factory('categoryService', ['$resource', function ($resource) {
-      return  $resource('http://localhost:8080/api/category/:category_id', {}, {
+      return  $resource('http://localhost:8080/api/category/:categoryId', {}, {
         'get': {
           method: 'GET'
         }
