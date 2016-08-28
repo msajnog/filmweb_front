@@ -46,10 +46,10 @@ angular.module('checklist-model', [])
   function postLinkFn(scope, elem, attrs) {
      // exclude recursion, but still keep the model
     var checklistModel = attrs.checklistModel;
-    attrs.$set("checklistModel", null);
+    attrs.$set('checklistModel', null);
     // compile with `ng-model` pointing to `checked`
     $compile(elem)(scope);
-    attrs.$set("checklistModel", checklistModel);
+    attrs.$set('checklistModel', checklistModel);
 
     // getter / setter for original model
     var getter = $parse(checklistModel);
@@ -140,7 +140,7 @@ angular.module('checklist-model', [])
       // by default ngModel is 'checked', so we set it if not specified
       if (!tAttrs.ngModel) {
         // local scope var storing individual checkbox model
-        tAttrs.$set("ngModel", "checked");
+        tAttrs.$set('ngModel', 'checked');
       }
 
       return postLinkFn;

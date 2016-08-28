@@ -9,12 +9,7 @@
  */
 angular.module('filmwebFrontApp')
   .controller('LocationCtrl',['$scope', '$location', 'categoriesService', function ($scope, $location, categoriesService) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
+    
     $scope.isActive = function(route) {
       return route === $location.path();
     };

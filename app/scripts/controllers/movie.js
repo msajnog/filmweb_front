@@ -25,6 +25,15 @@ angular.module('filmwebFrontApp')
       }
     });
 
+    $scope.validateCheckboxes = function () {
+      console.log($scope.movie.categories.length);
+      if ($scope.movie.categories.length) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+
     $scope.addMovie = function() {
       console.log($scope.movie);
       movieService.save($scope.movie, function(res) {
