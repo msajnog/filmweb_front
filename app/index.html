@@ -48,7 +48,7 @@
                   <li ng-repeat="category in categories track by $index"><a href="#/category/{{category.url}}">{{category.name}}</a></li>
                 </ul>
               </li>
-              <li ng-class="{active: isActive('/add-movie')}"><a ng-href="#/add-movie">Add Movie</a></li>
+              <li ng-if="authorized" ng-class="{active: isActive('/add-movie')}"><a ng-href="#/add-movie">Add Movie</a></li>
             </ul>
           </div>
         </div>
@@ -100,6 +100,9 @@
         <script src="scripts/services/categoryservice.js"></script>
         <script src="scripts/services/movieservice.js"></script>
         <script src="scripts/directives/checklistmodel.js"></script>
+        <script src="scripts/constants.js"></script>
+        <script src="scripts/services.js"></script>
+        <script src="scripts/controllers.js"></script>
         <!-- endbuild -->
 </body>
 </html>

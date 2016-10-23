@@ -23,12 +23,14 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        requiresAuth: false
       })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controllerAs: 'about',
+        requiresAuth: false
       })
       // .when('/categories', {
       //   templateUrl: 'views/category.html',
@@ -38,14 +40,48 @@ angular
       .when('/category/:category', {
         templateUrl: 'views/category.html',
         controller: 'CategoryCtrl',
-        controllerAs: 'category'
+        controllerAs: 'category',
+        requiresAuth: false
       })
       .when('/add-movie', {
         templateUrl: 'views/addMovie.html',
         controller: 'MovieCtrl',
-        controllerAs: 'movie'
+        controllerAs: 'movie',
+        requiresAuth: true
+      })
+      .when('/outside', {
+        abstract: true,
+        templateUrl: 'views/outside.html',
+        requiresAuth: false
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'LoginCtrl',
+        requiresAuth: false
+      })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        requiresAuth: false
+      })
+      .when('/inside', {
+        templateUrl: 'views/inside.html',
+        controller: 'InsideCtrl',
+        requiresAuth: true
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
-  }]);
+  }])
+  .run(function ($rootScope, $route, AuthService, AUTH_EVENTS, $location) {
+    $rootScope.$on('$routeChangeStart', function (event,next) {
+      $rootScope.authorized = AuthService.isAuthenticated();
+      if (!AuthService.isAuthenticated()) {
+        if (next.$$route.requiresAuth) {
+          event.preventDefault();
+          $location.path('/login');
+        }
+      }
+    });
+  });
