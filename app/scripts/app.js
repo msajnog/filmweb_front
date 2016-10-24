@@ -78,10 +78,16 @@ angular
     $rootScope.$on('$routeChangeStart', function (event,next) {
       $rootScope.authorized = AuthService.isAuthenticated();
       if (!AuthService.isAuthenticated()) {
-        if (next.$$route.requiresAuth) {
+        if (next.$$route && next.$$route.requiresAuth) {
           event.preventDefault();
           $location.path('/login');
         }
       }
+    });
+  }).controller('AppCtrl', function($scope, AuthService, AUTH_EVENTS, $location) {
+    $scope.$on(AUTH_EVENTS.notAuthenticated, function() {
+      AuthService.logout();
+      $location.path('/login');
+      alert('Session Lost!');
     });
   });

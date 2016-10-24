@@ -50,6 +50,10 @@
               </li>
               <li ng-if="authorized" ng-class="{active: isActive('/add-movie')}"><a ng-href="#/add-movie">Add Movie</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right" ng-controller="InsideCtrl">
+              <li ng-if="!authorized"><a ng-href="#/Login">Login</a></li>
+              <li ng-if="authorized"><button type="button" ng-click="logout()" class="btn btn-info navbar-btn">Logout</button></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -97,12 +101,14 @@
         <script src="scripts/controllers/category.js"></script>
         <script src="scripts/controllers/movie.js"></script>
         <script src="scripts/controllers/location.js"></script>
+        <script src="scripts/controllers/inside.js"></script>
+        <script src="scripts/controllers/register.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <script src="scripts/services/categoryservice.js"></script>
         <script src="scripts/services/movieservice.js"></script>
+        <script src="scripts/services/authservice.js"></script>
         <script src="scripts/directives/checklistmodel.js"></script>
         <script src="scripts/constants.js"></script>
-        <script src="scripts/services.js"></script>
-        <script src="scripts/controllers.js"></script>
         <!-- endbuild -->
 </body>
 </html>
